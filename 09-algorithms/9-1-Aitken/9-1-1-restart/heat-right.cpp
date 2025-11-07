@@ -98,9 +98,11 @@ int main( int argc, char ** argv ) {
 
     MPI_Comm  world = mui::mpi_split_by_app();
     MPI_Comm*  Cppworld = &world;
-    int rankLocal = MPI::COMM_WORLD.Get_rank();
-    int sizeLocal = MPI::COMM_WORLD.Get_size();
-    
+    int rankLocal;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rankLocal);
+    int sizeLocal;
+    MPI_Comm_size(MPI_COMM_WORLD, &sizeLocal);
+
     int rank, size;
     MPI_Comm_rank( world, &rank );
     MPI_Comm_size( world, &size );

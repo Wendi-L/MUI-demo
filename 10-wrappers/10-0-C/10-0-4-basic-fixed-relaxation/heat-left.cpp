@@ -65,8 +65,8 @@ int main( int argc, char ** argv ) {
 
     const static int N = 7;
     double u1[N], u2[N];
-	std::string fetch_name = "u0";
-	std::string push_name = "u";
+    std::string fetch_name = "u0";
+    std::string push_name = "u";
 
     /// Initialise values from file
     std::string inoutFilenameL = "Resources/left_FR.csv";
@@ -155,8 +155,8 @@ int main( int argc, char ** argv ) {
 
             u[6] = interface.fetch( fetch_name, 6 * H, iter, s1, s2, fr );
 
-			printf( "Left under relaxation factor at iter= %d is %f\n", iter, fr.get_under_relaxation_factor(iter));
-			printf( "Left residual L2 Norm at iter= %d is %f\n", iter, fr.get_residual_L2_Norm(iter));
+            printf( "Left under relaxation factor at iter= %d is %f\n", iter, fr.get_under_relaxation_factor(iter));
+            printf( "Left residual L2 Norm at iter= %d is %f\n", iter, fr.get_residual_L2_Norm(iter));
 
             // calculate 'interior' points
             for ( int i = 1; i <  6; i++ ) v[i] = u[i] + k / ( H * H ) * ( u[i - 1] + u[i + 1] - 2 * u[i] );

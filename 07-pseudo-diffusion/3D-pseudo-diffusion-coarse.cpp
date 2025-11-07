@@ -58,6 +58,18 @@
 
 int main(int argc, char **argv) {
 
+// Test on HAVE_MUI_DETECTED and MUI_VERSION
+#ifdef HAVE_MUI_DETECTED
+    std::cout << "HAVE_MUI_DETECTED: yes\n";
+    if (MUI_VERSION >= 20000) {
+        std::cout << "MUI_VERSION = " << MUI_VERSION << ", which is 20,000 or larger\n";
+    } else {
+        std::cout << "MUI_VERSION = " << MUI_VERSION << ", which is smaller than 20,000\n";
+    }
+#else
+    std::cout << "HAVE_MUI_DETECTED: no\n";
+#endif
+
   /// Declare MPI common world with the scope of MUI
   MPI_Comm world = mui::mpi_split_by_app();
 

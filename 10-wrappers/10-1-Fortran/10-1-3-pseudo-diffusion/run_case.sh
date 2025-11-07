@@ -18,7 +18,7 @@ if [ -n "$1" ]; then
     fi
   else
     # Run cmake with the provided path as the MUI base directory
-    cmake -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=../ .. -DMUI_BASE_DIR=$1 -DCMAKE_PREFIX_PATH=$1/share/MUI-2.0/cmake
+    cmake -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=../ .. -DMUI_BASE_DIR=$1 -DCMAKE_PREFIX_PATH=$1/share/MUI-2.0.0/cmake
   fi
 else
   # Run cmake with the default MUI directory

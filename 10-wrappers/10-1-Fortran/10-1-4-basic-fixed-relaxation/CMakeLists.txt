@@ -17,13 +17,14 @@ include_directories(${MPI_INCLUDE_PATH})
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${MPI_COMPILE_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${MPI_LINK_FLAGS}")
 
-find_package(MUI REQUIRED)
+find_package(MUI QUIET)
 
 if(MUI_BASE_DIR)
   set(MUI_FORTRAN_LIB_DIR "${MUI_BASE_DIR}/lib")
   # Add the include directories
   include_directories(${MUI_BASE_DIR}/lib/mod)
   set(MUI_FORTRAN_INCLUDE_DIR "${MUI_BASE_DIR}/include/wrappers/Fortran")
+  set(MUI_INCLUDE_DIR "${MUI_BASE_DIR}/include")
   include_directories(${MUI_INCLUDE_DIR})
 endif()
 

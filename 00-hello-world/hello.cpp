@@ -65,8 +65,8 @@ int main( int argc, char ** argv ) {
   mui::point1d push_point;
   mui::point1d fetch_point;
 
-  // Option 2: Declare MUI interface and samplers using templates in config.h
-  // note: please update types stored in default_config in config.h first to 1-dimensional before compilation
+  // Option 2: Declare MUI interface and samplers using templates in mui_config.h
+  // note: please update types stored in default_config in mui_config.h first to 1-dimensional before compilation
   //mui::uniface<mui::default_config> interface( argv[1] );
   //mui::sampler_exact<mui::default_config> spatial_sampler;
   //mui::temporal_sampler_exact<mui::default_config> temporal_sampler;

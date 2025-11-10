@@ -13,11 +13,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(MPI REQUIRED)
 include_directories(${MPI_INCLUDE_PATH})
 
-find_package(MUI REQUIRED)
+find_package(MUI QUIET)
 
 if(MUI_BASE_DIR)
   set(MUI_C_LIB_DIR "${MUI_BASE_DIR}/lib")
   set(MUI_C_INCLUDE_DIR "${MUI_BASE_DIR}/include/wrappers/C")
+  set(MUI_INCLUDE_DIR "${MUI_BASE_DIR}/include")
   include_directories(${MUI_INCLUDE_DIR})
 endif()
 

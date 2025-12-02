@@ -45,17 +45,19 @@
  */
 
 #include "mui.h"
+#include <iostream>
+#include <cstdlib>
 
 int main( int argc, char ** argv ) {
-  if ( argc < 3 ) {
-    printf( "USAGE: mpirun -np n1 %s URI1 value1 : -np n2 %s URI2 value2\n\n"
-            "n1, n2     : number of ranks for each 'subdomain'\n"
-            "URI format : mpi://domain-identifier/interface-identifier\n"
-            "value      : an arbitrary number\n\n"
-            "EXAMPLE: mpirun -np 1 %s mpi://domain1/ifs 0.618 : -np 1 %s "
-            "mpi://domain2/ifs 1.414\n\n",
-            argv[0], argv[0], argv[0], argv[0] );
-    exit( 0 );
+  if (argc < 3) {
+      std::cout << "USAGE: mpirun -np n1 " << argv[0] << " URI1 value1 : -np n2 "
+                << argv[0] << " URI2 value2\n\n"
+                << "n1, n2     : number of ranks for each 'subdomain'\n"
+                << "URI format : mpi://domain-identifier/interface-identifier\n"
+                << "value      : an arbitrary number\n\n"
+                << "EXAMPLE: mpirun -np 1 " << argv[0] << " mpi://domain1/ifs 0.618 : -np 1 "
+                << argv[0] << " mpi://domain2/ifs 1.414\n\n";
+      return 0;
   }
 
   // Option 1: Declare MUI objects using specialisms (i.e. 1 = 1 dimensional, d = double)
@@ -73,11 +75,11 @@ int main( int argc, char ** argv ) {
   //mui::point<mui::default_config::REAL, 1> push_point;
   //mui::point<mui::default_config::REAL, 1> fetch_point;
 
-  printf( "domain %s pushed value %s\n", argv[1], argv[2] );
+  std::cout << "domain " << argv[1] << " pushed value " << argv[2] << "\n";
 
   // Push value stored in "argv[2]" to the MUI interface
   push_point[0] = 0;
-  interface.push( "data", push_point, atof( argv[2] ) );
+  interface.push( "data", push_point, std::atof( argv[2] ) );
 
   // Commit (transmit by MPI) the value
   interface.commit( 0 );
@@ -87,7 +89,7 @@ int main( int argc, char ** argv ) {
   fetch_point[0] = 0;
   double v = interface.fetch( "data", fetch_point, time, spatial_sampler, temporal_sampler );
 
-  printf( "domain %s fetched value %lf\n", argv[1], v );
+  std::cout << "domain " << argv[1] << " fetched value " << v << "\n";
 
   return 0;
 }
